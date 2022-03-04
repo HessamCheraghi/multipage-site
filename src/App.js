@@ -2,9 +2,9 @@ import "./App.css";
 import {
   BrowserRouter,
   Route,
-  Switch,
   NavLink,
-  Redirect,
+  Routes,
+  Navigate,
 } from "react-router-dom";
 
 //page components
@@ -19,30 +19,18 @@ function App() {
       <BrowserRouter>
         <nav>
           <h1>My Articles</h1>
-          <NavLink exact to="/">
-            Home
-          </NavLink>
+          <NavLink to="/">Home</NavLink>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </nav>
 
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-          <Route path="/articles/:id">
-            <Article />
-          </Route>
-          <Route path="*">
-            <Redirect to="/" />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/articles/:id" element={<Article />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );
