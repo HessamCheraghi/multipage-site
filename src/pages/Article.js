@@ -4,14 +4,11 @@ import { useFetch } from "../hooks/useFetch";
 
 export default function Article() {
   const { id } = useParams();
-  const url = `http://localhost:3000/articles/${id}`;
+  const url = `http://localhost:8000/articles/${id}`;
   const { data: article, isPending, error } = useFetch(url);
   const navigate = useNavigate();
   useEffect(() => {
-    if (error)
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
+    if (error) navigate("/");
   }, [error, navigate]);
 
   return (
